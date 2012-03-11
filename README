@@ -1,0 +1,5 @@
+How to get quick and dirty results?
+1. ./bootstrap - needed only once, it will create directories and download data
+2. ./utils/prepare.sh - it will prepare data for using in matlab
+3. launch matlab, run play.m script
+4. ./utils/evaluate.sh

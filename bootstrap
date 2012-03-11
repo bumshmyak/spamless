@@ -1,0 +1,34 @@
+#!/bin/bash
+
+BASEDIR=`dirname "$0"`/..
+
+FEATURE_URL="http://barcelona.research.yahoo.net/webspam/datasets/uk2007/features/"
+
+FEATURE_FILES="uk-2007-05.obvious_features
+               uk-2007-05.link_based_features
+               uk-2007-05.link_based_features_transformed"
+
+mkdir ${BASEDIR}/data
+mkdir ${BASEDIR}/data/results
+pushd ${BASEDIR}/data
+
+wget http://barcelona.research.yahoo.net/webspam/datasets/uk2007/webspam-uk2007-set1-1.0.tar.gz
+tar xvzf webspam-uk2007-set1-1.0.tar.gz
+rm webspam-uk2007-set1-1.0.tar.gz
+
+for feature_file in ${FEATURE_FILES}
+do
+		wget ${FEATURE_URL}${feature_file}.csv.gz
+		gunzip ${feature_file}.csv.gz
+		head -1 ${feature_file}.csv > ${feature_file}_header.csv
+		sed -i '1d' ${feature_file}.csv
+done
+
+popd
+
+wget http://osmot.cs.cornell.edu/kddcup/perf/perf.src.tar.gz
+tar xvzf perf.src.tar.gz
+rm perf.src.tar.gz
+cd perf.src
+make
+cd ..
