@@ -15,7 +15,7 @@ ${BASEDIR}/utils/make_control_set.py ${FEATURES_FILE} > ${BASEDIR}/data/prepared
 
 
 
-FEATURE_NAMES_FILE=${BASEDIR}/data/uk-2007-05.link_based_features.csv
+FEATURE_NAMES_FILE=${BASEDIR}/data/uk-2007-05.link_based_features_header.csv
 cat ${BASEDIR}/data/prepared_train.txt | \
     ${BASEDIR}/utils/convert_prepared_set_to_arff.py -n ${FEATURE_NAMES_FILE} -l >\
     ${BASEDIR}/data/prepared_train.arff

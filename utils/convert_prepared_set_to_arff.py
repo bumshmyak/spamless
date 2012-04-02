@@ -16,13 +16,18 @@ def printHeader (names_filename):
     print "@relation web_graph_extended_links_features"
     print ""
     features_count = 0
+    lines_count  = 0
     for line in open (names_filename, "r"):
+        lines_count += 1
         fields = line.strip ().lstrip ('#').split (',')
         # TODO: С названием меры класса тоже можно будет подумать
         fields.append ("relevance")
         features_count = len (fields [2:])
         for field in fields [2:]:
             print "@attribute " + field +  " numeric"
+
+        
+    assert (lines_count == 1)
     
     print ""
     print "@data"
