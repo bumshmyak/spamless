@@ -14,7 +14,7 @@ for line in predictions_file:
 for line in test_file:
     items = line.strip('\r\n').split(' ')
     host_id = items[0]
-    host_prediction = float(items[2])
+    host_prediction = float(items[1])
     host_label = 0
     if host_prediction == 0.5:
         continue
